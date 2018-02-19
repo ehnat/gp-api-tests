@@ -6,11 +6,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTestCase {
 
-    private final ApiContext apiContext = new ApiContext();
-
-    ApiContext apiContext() {
-        return apiContext;
-    }
+    final ApiContext apiContext = new ApiContext();
 
     @BeforeMethod
     public void setUp() throws Exception {

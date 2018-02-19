@@ -28,10 +28,10 @@ public class SingleWBetsTest extends BaseTestCase {
     private static final int BLOCK_SIZE = 100;
     private static final int BLOCK_NUM = 0;
 
-    private final AccountsApiClient accountsApiClient = new AccountsApiClient(apiContext());
-    private final BetsApiClient betsApiClient = new BetsApiClient(apiContext());
-    private final BetSlipsApiClient betSlipsApiClient = new BetSlipsApiClient(apiContext());
-    private final CompetitionsApiClient competitionsApiClient = new CompetitionsApiClient(apiContext());
+    private final AccountsApiClient accountsApiClient = new AccountsApiClient(apiContext);
+    private final BetsApiClient betsApiClient = new BetsApiClient(apiContext);
+    private final BetSlipsApiClient betSlipsApiClient = new BetSlipsApiClient(apiContext);
+    private final CompetitionsApiClient competitionsApiClient = new CompetitionsApiClient(apiContext);
 
     @Test
     public void testPlaceSingleBetWithMinStake() {
@@ -70,7 +70,7 @@ public class SingleWBetsTest extends BaseTestCase {
 
     private void assertIsBetNotPlaced(Response response) {
         response.then().
-                statusCode(HttpStatus.SC_CREATED).
+                statusCode(HttpStatus.SC_OK).
                 body("whoBets.whoFaults[0].faultString", contains("Stake too low"));
     }
 
