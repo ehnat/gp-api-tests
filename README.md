@@ -1,6 +1,6 @@
 ### Project description
 This project contains tests which placing bets with specific parameters. There are API tests.
-In project there are using 5 different APIS: Accounts API, Bets API, Betslip API, Competitions API and Sessions API.
+In project there are using 5 different api: Accounts API, Bets API, Betslips API, Competitions API and Sessions API.
 
 ### Technical description
 - **Used technologies:** Java 8, Maven (preferred v.3.3.9)
@@ -22,14 +22,14 @@ In project there are using 5 different APIS: Accounts API, Bets API, Betslip API
 During creating this test framework there were two difficulties:
 - problems with connections to api
 - lack of knowledge of the business domain
-Despite these problems I created test framework with one specific test case of placing bet.
+Despite these problems I created test framework with two specific test cases of placing bet.
 
 ### Aspects to develop in next steps:
-1. Prepare next tests which consider different bet parameter (after better understand business domain):
-    - a. legType
-    - b. priceType
-    - c. corner cases for user balance
-    - d. corner cases for stakes form betslip
-    - e. freeBet
+1. Prepare next tests which consider different bet parameters (after better understanding business domain):
+    - legType
+    - priceType
+    - corner cases for user balance
+    - corner cases for stakes from betslip
+    - freeBet
 2. Generate api objects from documentation (WADL) instead creating them in the code
 
