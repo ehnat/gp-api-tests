@@ -1,4 +1,4 @@
-package com.williamhill.developer.apiclients;
+package com.williamhill.developer.api.client;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
@@ -10,38 +10,37 @@ import static com.williamhill.developer.configuration.Configuration.CONFIGURATIO
 
 public class ApiContext {
 
-    private String ticket;
+    public static final String BASE_URL = CONFIGURATION.getValue("baseUrl");
+    public static final String BASE_PATH = CONFIGURATION.getValue("basePath");
     private static final String JSON_CONTENT = "application/json";
-
-    public ApiContext() {
-    }
+    private String ticket;
 
     String getApiKey() {
         return CONFIGURATION.getValue("apiKey");
     }
 
-    String getApiSecret() {
+    private String getApiSecret() {
         return CONFIGURATION.getValue("apiSecret");
     }
 
-    String getUserName() {
+    private String getUserName() {
         return CONFIGURATION.getValue("username");
     }
 
-    String getPassword() {
+    private String getPassword() {
         return CONFIGURATION.getValue("password");
     }
 
-    String getExpiredOption() {
+    private String getExpiredOption() {
         return CONFIGURATION.getValue("expireOption");
     }
 
-    String getApiTicket() {
+    private String getApiTicket() {
         if (ticket != null) {
             return ticket;
         }
 
-        SessionsAPIClient client = new SessionsAPIClient(this);
+        SessionsApiClient client = new SessionsApiClient(this);
         ticket = client.getTicket();
         return ticket;
     }
@@ -60,7 +59,6 @@ public class ApiContext {
         headers.put("who-secret", getApiSecret());
         return headers;
     }
-
 
     Map<String, String> getCredentials() {
         Map<String, String> credentials = new HashMap<>();

@@ -1,13 +1,15 @@
-package com.williamhill.developer.apiobjects.outcome;
+package com.williamhill.developer.api.dto.event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Setter
 @Getter
-public class Odds {
+@Setter
+public class Event {
 
-    private LivePrice livePrice;
+    private String id;
+    private Availability availability;
+
 }

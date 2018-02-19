@@ -1,7 +1,7 @@
-package com.williamhill.developer.apiclients;
+package com.williamhill.developer.api.client;
 
-import com.williamhill.developer.apiobjects.event.Event;
-import com.williamhill.developer.apiobjects.outcome.Outcome;
+import com.williamhill.developer.api.dto.event.Event;
+import com.williamhill.developer.api.dto.outcome.Outcome;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.path.json.JsonPath;
 import io.restassured.specification.RequestSpecification;
@@ -16,8 +16,7 @@ public class CompetitionsApiClient {
     private static final String CATEGORIES_ENDPOINT = "/competitions/categories";
     private static final String OUTCOMES_FOR_EVENT_ENDPOINT = "/competitions/events/{eventId}/markets/outcomes";
     private static final String SPORTS_BOOK_JSON_CONTENT = "application/vnd.who.Sportsbook+json;v=1;charset=utf-8";
-
-    private ApiContext apiContext;
+    private final ApiContext apiContext;
 
     public CompetitionsApiClient(ApiContext apiContext) {
         this.apiContext = apiContext;

@@ -18,18 +18,18 @@ In project there are using 5 different APIS: Accounts API, Bets API, Betslip API
   ```sh
     mvn clean test
   ```
-### Difficulties during develope test framework and what has been achieved:
+### Difficulties during developing test framework and what has been achieved:
 During creating this test framework there were two difficulties:
 - problems with connections to api
 - lack of knowledge of the business domain
 Despite these problems I created test framework with one specific test case of placing bet.
 
-### Aspects to develope in next steps:
-- 1. prepare next tests which consider different bet parameter (after better understand business domain):
-- a. legType
-- b. priceType
-- c. corner cases for user balance
-- d. corner cases for stakes form betslip
-- e. freeBet
-- 2. try to generate api objects using documentation (WADL format)
+### Aspects to develop in next steps:
+1. Prepare next tests which consider different bet parameter (after better understand business domain):
+    - a. legType
+    - b. priceType
+    - c. corner cases for user balance
+    - d. corner cases for stakes form betslip
+    - e. freeBet
+2. Generate api objects from documentation (WADL) instead creating them in the code
 

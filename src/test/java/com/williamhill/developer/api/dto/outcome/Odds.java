@@ -1,4 +1,4 @@
-package com.williamhill.developer.apiobjects.outcome;
+package com.williamhill.developer.api.dto.outcome;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Setter
 @Getter
-public class LivePrice {
-    private String priceNum;
-    private String priceDen;
+public class Odds {
+
+    private LivePrice livePrice;
 }

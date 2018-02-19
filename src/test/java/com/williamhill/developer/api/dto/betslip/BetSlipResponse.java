@@ -1,4 +1,4 @@
-package com.williamhill.developer.apiobjects.betslip;
+package com.williamhill.developer.api.dto.betslip;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class BetSlipResponse {
+
     private BigDecimal maxStake;
     private BigDecimal minStake;
+
 }

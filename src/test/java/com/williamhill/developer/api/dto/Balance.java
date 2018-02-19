@@ -1,4 +1,4 @@
-package com.williamhill.developer.apiobjects;
+package com.williamhill.developer.api.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,4 +13,5 @@ public class Balance {
     private BigDecimal balance;
     private BigDecimal withdrawableFunds;
     private String currencyCode;
+
 }

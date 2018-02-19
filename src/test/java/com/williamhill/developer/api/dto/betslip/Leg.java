@@ -1,4 +1,4 @@
-package com.williamhill.developer.apiobjects.betslip;
+package com.williamhill.developer.api.dto.betslip;
 
 import lombok.Getter;
 

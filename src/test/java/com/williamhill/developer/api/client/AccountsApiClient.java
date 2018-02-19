@@ -1,16 +1,16 @@
-package com.williamhill.developer.apiclients;
+package com.williamhill.developer.api.client;
 
-import com.williamhill.developer.apiobjects.Balance;
+import com.williamhill.developer.api.dto.Balance;
 import io.restassured.path.json.JsonPath;
 
 import static io.restassured.RestAssured.given;
 
-public class AccountsAPIClient {
+public class AccountsApiClient {
 
-    private ApiContext apiContext;
     private static final String CUSTOMER_BALANCE_ENDPOINT = "/accounts/me/balance";
+    private final ApiContext apiContext;
 
-    public AccountsAPIClient(ApiContext apiContext) {
+    public AccountsApiClient(ApiContext apiContext) {
         this.apiContext = apiContext;
     }
 

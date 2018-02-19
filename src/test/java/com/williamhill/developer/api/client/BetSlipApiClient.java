@@ -1,23 +1,22 @@
-package com.williamhill.developer.apiclients;
+package com.williamhill.developer.api.client;
 
-import com.williamhill.developer.apiobjects.betslip.*;
-import com.williamhill.developer.apiobjects.outcome.Outcome;
+import com.williamhill.developer.api.dto.betslip.*;
+import com.williamhill.developer.api.dto.outcome.Outcome;
 import io.restassured.path.json.JsonPath;
 
 import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
 
-public class BetSlipAPIClient {
-
-    private ApiContext apiContext;
+public class BetSlipApiClient {
 
     private static final String BETSLIP_ENDPOINT = "/betslips/me";
     private static final String JSON_CONTENT = "application/json";
     private static final String BETSLIP_STATUS = "A";
     private static final String BETSLIP_STATUS_CHANGED = "false";
+    private final ApiContext apiContext;
 
-    public BetSlipAPIClient(ApiContext apiContext) {
+    public BetSlipApiClient(ApiContext apiContext) {
         this.apiContext = apiContext;
     }
 
@@ -35,7 +34,7 @@ public class BetSlipAPIClient {
         return response.getObject("whoBetslips.bet[0]", BetSlipResponse.class);
     }
 
-    public BetSlipRequest createBetSlipRequest(String legType, Outcome outcome, String priceType) {
+    private BetSlipRequest createBetSlipRequest(String legType, Outcome outcome, String priceType) {
 
         Part part = new Part(
                 outcome.getId(),

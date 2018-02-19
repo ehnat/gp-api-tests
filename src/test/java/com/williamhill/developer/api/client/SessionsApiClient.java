@@ -1,4 +1,4 @@
-package com.williamhill.developer.apiclients;
+package com.williamhill.developer.api.client;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
@@ -6,16 +6,16 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.URLENC;
 
-public class SessionsAPIClient {
+class SessionsApiClient {
 
-    private ApiContext apiContext;
     private static final String LOGIN_ENDPOINT = "/sessions/tickets";
+    private final ApiContext apiContext;
 
-    public SessionsAPIClient(ApiContext apiContext) {
+    SessionsApiClient(ApiContext apiContext) {
         this.apiContext = apiContext;
     }
 
-    public String getTicket() {
+    String getTicket() {
         return given().
                         spec(getLoginRequestSpec()).
                 when().
@@ -24,7 +24,7 @@ public class SessionsAPIClient {
                         extract().path("whoSessions.ticket");
     }
 
-    public RequestSpecification getLoginRequestSpec() {
+    private RequestSpecification getLoginRequestSpec() {
         RequestSpecBuilder builder = new RequestSpecBuilder();
         RequestSpecification authorization =
                 given().
