@@ -45,7 +45,7 @@ public class ApiContext {
         return ticket;
     }
 
-    public RequestSpecification getRequestSpec() {
+    RequestSpecification getRequestSpec() {
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.addHeader("who-ticket", getApiTicket())
                 .addHeaders(getHeaders());

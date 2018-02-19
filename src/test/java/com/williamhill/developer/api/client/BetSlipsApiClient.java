@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
 
-public class BetSlipApiClient {
+public class BetSlipsApiClient {
 
     private static final String BETSLIP_ENDPOINT = "/betslips/me";
     private static final String JSON_CONTENT = "application/json";
@@ -16,7 +16,7 @@ public class BetSlipApiClient {
     private static final String BETSLIP_STATUS_CHANGED = "false";
     private final ApiContext apiContext;
 
-    public BetSlipApiClient(ApiContext apiContext) {
+    public BetSlipsApiClient(ApiContext apiContext) {
         this.apiContext = apiContext;
     }
 
