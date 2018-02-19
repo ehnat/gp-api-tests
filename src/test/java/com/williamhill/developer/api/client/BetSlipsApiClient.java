@@ -2,6 +2,8 @@ package com.williamhill.developer.api.client;
 
 import com.williamhill.developer.api.dto.betslip.*;
 import com.williamhill.developer.api.dto.outcome.Outcome;
+import com.williamhill.developer.domain.LegType;
+import com.williamhill.developer.domain.PriceType;
 import io.restassured.path.json.JsonPath;
 
 import java.util.Arrays;
@@ -20,7 +22,7 @@ public class BetSlipsApiClient {
         this.apiContext = apiContext;
     }
 
-    public BetSlipResponse getBetSlip(String legType, Outcome outcome, String priceType) {
+    public BetSlipResponse getBetSlip(LegType legType, Outcome outcome, PriceType priceType) {
         BetSlipRequest betSlipRequest = createBetSlipRequest(legType, outcome, priceType);
         JsonPath response =
                 given().
@@ -34,17 +36,17 @@ public class BetSlipsApiClient {
         return response.getObject("whoBetslips.bet[0]", BetSlipResponse.class);
     }
 
-    private BetSlipRequest createBetSlipRequest(String legType, Outcome outcome, String priceType) {
+    private BetSlipRequest createBetSlipRequest(LegType legType, Outcome outcome, PriceType priceType) {
 
         Part part = new Part(
                 outcome.getId(),
                 BETSLIP_STATUS,
-                priceType,
+                priceType.getValue(),
                 BETSLIP_STATUS_CHANGED,
                 outcome.getOdds().getLivePrice().getPriceNum(),
                 outcome.getOdds().getLivePrice().getPriceDen()
         );
-        Leg leg = new Leg(legType, Arrays.asList(part));
+        Leg leg = new Leg(legType.getValue(), Arrays.asList(part));
         return new BetSlipRequest(Arrays.asList(new WhoBetslips(Arrays.asList(leg))));
     }
 }

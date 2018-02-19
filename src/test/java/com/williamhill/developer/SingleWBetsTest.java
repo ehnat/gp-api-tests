@@ -7,8 +7,6 @@ import com.williamhill.developer.api.client.CompetitionsApiClient;
 import com.williamhill.developer.api.dto.Balance;
 import com.williamhill.developer.api.dto.betslip.BetSlipResponse;
 import com.williamhill.developer.api.dto.outcome.Outcome;
-import com.williamhill.developer.domain.LegType;
-import com.williamhill.developer.domain.PriceType;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
@@ -18,13 +16,13 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.williamhill.developer.domain.LegType.WIN;
+import static com.williamhill.developer.domain.PriceType.LIVE_FIXED_PRICE;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.contains;
 
 public class SingleWBetsTest extends BaseTestCase {
 
-    private static final String LEG_TYPE = LegType.WIN.getValue();
-    private static final String PRICE_TYPE = PriceType.LIVE_FIXED_PRICE.getValue();
     private static final int BLOCK_SIZE = 100;
     private static final int BLOCK_NUM = 0;
 
@@ -37,11 +35,11 @@ public class SingleWBetsTest extends BaseTestCase {
     public void testPlaceSingleBetWithMinStake() {
 
         Outcome anyOutcome = competitionsApiClient.getAnyOutcome();
-        BetSlipResponse betSlip = betSlipsApiClient.getBetSlip(LEG_TYPE, anyOutcome, PRICE_TYPE);
+        BetSlipResponse betSlip = betSlipsApiClient.getBetSlip(WIN, anyOutcome, LIVE_FIXED_PRICE);
         BigDecimal stake = betSlip.getMinStake();
-
         assertCustomerBalance(stake);
         Map<String, String> betData = collectBetData(anyOutcome, stake);
+
         Response betResponse = betsApiClient.placeBet(betData);
 
         assertIsBetPlaced(betResponse);
@@ -52,11 +50,11 @@ public class SingleWBetsTest extends BaseTestCase {
     public void testPlaceSingleBetWithStakeTooLow() {
 
         Outcome anyOutcome = competitionsApiClient.getAnyOutcome();
-        BetSlipResponse betSlip = betSlipsApiClient.getBetSlip(LEG_TYPE, anyOutcome, PRICE_TYPE);
+        BetSlipResponse betSlip = betSlipsApiClient.getBetSlip(WIN, anyOutcome, LIVE_FIXED_PRICE);
         BigDecimal stake = betSlip.getMinStake().subtract(new BigDecimal("0.01"));
-
         assertCustomerBalance(stake);
         Map<String, String> betData = collectBetData(anyOutcome, stake);
+
         Response betResponse = betsApiClient.placeBet(betData);
 
         assertIsBetNotPlaced(betResponse);
@@ -88,10 +86,10 @@ public class SingleWBetsTest extends BaseTestCase {
 
     private Map<String, String> collectBetData(Outcome outcome, BigDecimal stake) {
         Map<String, String> betData = new HashMap<>();
-        betData.put("legType", LEG_TYPE);
+        betData.put("legType", WIN.getValue());
         betData.put("stake", stake.toString());
         betData.put("outcomeId", outcome.getId());
-        betData.put("priceType", PRICE_TYPE);
+        betData.put("priceType", LIVE_FIXED_PRICE.getValue());
         betData.put("priceNum", outcome.getOdds().getLivePrice().getPriceNum());
         betData.put("priceDen", outcome.getOdds().getLivePrice().getPriceDen());
         return betData;
