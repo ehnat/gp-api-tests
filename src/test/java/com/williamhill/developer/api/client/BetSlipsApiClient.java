@@ -31,7 +31,7 @@ public class BetSlipsApiClient {
                         body(betSlipRequest).
                 when().
                         post(BETSLIP_ENDPOINT).
-                then().log().all().
+                then().
                         extract().jsonPath();
         return response.getObject("whoBetslips.bet[0]", BetSlipResponse.class);
     }
